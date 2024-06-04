@@ -29,3 +29,33 @@
 
 // console.log(user.getDetails());
 // user.childObj.getChildDetails();
+
+// ---------------------------------------
+
+// In case of arrow functions
+
+// let user = {
+//   name: "Shubham Kumar",
+//   age: 24,
+//   getDetails: () => {
+//     console.log(this.name); //undefined
+//   },
+// };
+
+// user.getDetails();
+
+// In case of class based approach
+
+// class user {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   getDetails() {
+//     console.log(this.name);
+//   }
+// }
+
+// const User = new user("Shubham Kumar");
+
+// console.log(User); //user object
+// console.log(User.getDetails()); //"Shubham Kumar"
