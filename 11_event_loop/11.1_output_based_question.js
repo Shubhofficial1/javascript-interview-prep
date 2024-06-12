@@ -1,4 +1,4 @@
-// JS is a single threaded language , so it can't work on more than one thing at a time. Thus Event loop is a concept used by it to tackle the problem of asyncrnous code
+// JS is a single threaded language , so it can't work on more than one thing at a time. Thus Event loop is a concept used by it to tackle the problem of async code
 
 // Event loop act as a traffic controller , helps to execute sync & asycn code efficiently
 
@@ -122,3 +122,158 @@
 // running
 // start
 // end
+
+// Q7 :
+
+// setTimeout(() => {
+//   console.log("a runs");
+// }, 1000);
+
+// setTimeout(() => {
+//   console.log("b runs");
+// }, 500);
+
+// setTimeout(() => {
+//   console.log("c runs");
+// }, 0);
+
+// function d() {
+//   console.log("d");
+// }
+
+// d();
+
+// OUTPUT :
+// d
+// c runs
+// b runs
+// a runs
+
+// Q8 :
+
+// for (var i = 0; i < 3; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, i * 1000);
+// }
+
+// OUTPUT :
+// 3
+// 3
+// 3
+
+// Reference of i is being passed bcz of var
+
+// Task queue :   log()     log()     log()
+//                  i       i           i
+
+// Once loop finishes , the value of i is 3 , thus it gets printed 3 times
+
+// Q9 :
+
+// for (let i = 0; i < 3; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, i * 1000);
+// }
+
+// OUTPUT :
+// 0
+// 1
+// 2
+
+// Q10 : Implement same without let variable (using closure)
+
+// for (var i = 0; i < 3; i++) {
+//   function inner(i) {
+//     setTimeout(() => {
+//       console.log(i);
+//     }, i * 1000);
+//   }
+//   inner(i);
+// }
+
+// OUTPUT :
+// 0
+// 1
+// 2
+
+// Q11 :
+
+// Promise.resolve()
+//   .then(function a() {
+//     Promise.resolve().then(function d() {
+//       console.log("D Runs");
+//     });
+//     Promise.resolve().then(function e() {
+//       console.log("E Runs");
+//     });
+//     throw new Error("Error Occured");
+//     Promise.resolve().then(function f() {
+//       console.log("F Runs");
+//     });
+//   })
+//   .catch(function b() {
+//     console.log("B Runs");
+//   })
+//   .then(function c() {
+//     console.log("C Runs");
+//   });
+
+// OUTPUT :
+// D Runs
+// E Runs
+// B runs
+// C runs
+
+// Q12 :
+
+// Promise.resolve()
+//   .then(function a() {
+//     Promise.resolve().then(function d() {
+//       setTimeout(() => {
+//         console.log("D Runs");
+//       });
+//     });
+//     Promise.resolve().then(function e() {
+//       console.log("E Runs");
+//     });
+//     throw new Error("Error Occured");
+//     Promise.resolve().then(function f() {
+//       console.log("F Runs");
+//     });
+//   })
+//   .catch(function b() {
+//     console.log("B Runs");
+//   })
+//   .then(function c() {
+//     console.log("C Runs");
+//   });
+
+// OUTPUT :
+// E Runs
+// B Runs
+// C Runs
+// D Runs => task queue
+
+// Q13 :
+
+// function pause(millis) {
+//   return new Promise(function p(resolve) {
+//     setTimeout(function s() {
+//       resolve("Resolved");
+//     }, millis);
+//   });
+// }
+
+// const start = Date.now();
+// console.log("Start");
+
+// pause(1000).then((res) => {
+//   const end = Date.now();
+//   const secs = (end - start) / 1000;
+//   console.log(res, ":", secs);
+// });
+
+// Start;
+// Resolved: 1.01;
