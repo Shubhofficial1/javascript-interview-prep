@@ -291,3 +291,133 @@
 // console.log(partial(1)(3, 5));
 
 // ------------------------------------
+// ------------------------------------------
+// this
+
+// this.a = 5;
+// console.log(this.a); // 5
+
+// function getA() {
+//   console.log(this.a);
+// }
+
+// getA(); // 5
+
+// let user = {
+//   name: "Shubham",
+//   age: 24,
+//   getDetails() {
+//     console.log(this.name);
+//   },
+//   childObj: {
+//     newName: "sh",
+//     getDetails() {
+//       console.log(this.newName + ":" + this.name);
+//     },
+//   },
+// };
+
+// user.childObj.getDetails(); // sh : undefined
+
+// const user = {
+//   name: "Shubham",
+//   age: 24,
+//   getDetails: () => {
+//     console.log(this.name);
+//   },
+//   getCorrectDetails() {
+//     const nestedArrowFn = () => console.log(this.name);
+//     nestedArrowFn();
+//   },
+// };
+
+// user.getDetails(); //undefined
+// user.getCorrectDetails(); //shubham
+
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   getName() {
+//     console.log(this.name);
+//   }
+// }
+
+// const user = new User("Shubham");
+// console.log(user); // User {name:'Shubham'}
+// user.getName(); // Shubham
+
+// const user = {
+//   firstName: "Shubham",
+//   getName() {
+//     const firstName = "Shubham1";
+//     return this.firstName;
+//   },
+// };
+// console.log(user.getName()); //Shubham
+
+// const user = {
+//   name: "Sh",
+//   logMessage() {
+//     console.log(this.name);
+//   },
+// };
+
+// setTimeout(user.logMessage, 1000); // nothing is printed, it is a callback , this pointing ton window object now => undefined
+
+// setTimeout(() => user.logMessage(), 1000); // Sh
+
+// const user = {
+//   name: "Shubham",
+//   greeting() {
+//     return `Hello ${this.name}`;
+//   },
+//   farewell: () => {
+//     return `Goodbye ${this.name}`;
+//   },
+// };
+
+// console.log(user.greeting()); // Hello Shubham
+// console.log(user.farewell()); // Goodbye undefined
+
+// Create an calculator object
+
+// const calculator = {
+//   read() {
+//     this.a = prompt("a=", 0);
+//     this.b = prompt("b=", 0);
+//   },
+
+//   sum() {
+//     return this.a + this.b;
+//   },
+
+//   mul() {
+//     return this.a * this.b;
+//   },
+// };
+
+// calculator.read();
+// console.log(calculator.sum());
+// console.log(calculator.mul());
+
+// const calc = {
+//   total: 0,
+//   add(a) {
+//     this.total += a;
+//     return this;
+//   },
+//   multiply(a) {
+//     this.total *= a;
+//     return this;
+//   },
+//   substract(a) {
+//     this.total -= a;
+//     return this;
+//   },
+// };
+
+// const result = calc.add(10).substract(5).multiply(3);
+// console.log(result.total);
+
+// -------------------------------------------
